@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ECC 2025 Registration</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+    form { display: flex; flex-direction: column; gap: 10px; }
+    input, button { padding: 10px; font-size: 16px; }
+    button { background-color: #007bff; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #0056b3; }
+  </style>
+</head>
+<body>
+  <h1>ECC 2025 Registration</h1>
+  <form id="registration-form">
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="paper_title" placeholder="Paper Title" required>
+    <input type="text" name="paper_id" placeholder="Paper ID" required>
+    <input type="number" name="amount" placeholder="Amount (USD)" required min="0" step="1">
+    <button type="submit">Register and Pay</button>
+  </form>
+  <script>
+    document.getElementById('registration-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData);
+      try {
+        const response = await fetch('YOUR_BACKEND_URL/register', {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: { 'Content-Type': 'application/json' }
+        });
+        const result = await response.json();
+        if (result.paymentUrl) {
+          window.location.href = result.paymentUrl; // Redirect to EPS
+        } else {
+          alert('Error: Could not generate payment link');
+        }
+      } catch (error) {
+        alert('Error: ' + error.message);
+      }
+    });
+  </script>
+</body>
+</html>
