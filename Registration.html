@@ -27,7 +27,7 @@
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData);
       try {
-        const response = await fetch('https://your-app.herokuapp.com/register', {
+        const response = await fetch('http://localhost:3000/register', {
           method: 'POST',
           body: JSON.stringify(data),
           headers: { 'Content-Type': 'application/json' }
