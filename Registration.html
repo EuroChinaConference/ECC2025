@@ -129,6 +129,11 @@
 
     // Function for direct payment links
     async function directPay(currency) {
+      const amount = prompt(`Enter amount in ${currency}`);
+      if (!amount || isNaN(amount) || amount <= 0) {
+        alert('Please enter a valid amount');
+        return;
+      }
       const data = {
         name: 'Direct Payment',
         email: 'direct@ecc2025.org',
