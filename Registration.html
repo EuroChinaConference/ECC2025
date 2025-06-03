@@ -2,17 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ECC 2025 Registration</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
-    form { display: flex; flex-direction: column; gap: 10px; }
-    input, button { padding: 10px; font-size: 16px; }
-    button { background-color: #007bff; color: white; border: none; cursor: pointer; }
-    button:hover { background-color: #0056b3; }
+    body {
+      font-family: 'Arial', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f4f7fa;
+      color: #333;
+    }
+    h1, h3 {
+      color: #1a3c6d;
+      text-align: center;
+    }
+    p {
+      line-height: 1.6;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    input, button {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .payment-info {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e9f4ff;
+      border-left: 4px solid #007bff;
+      border-radius: 4px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+    }
+    footer img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <h1>ECC 2025 Registration</h1>
+  <h3>Complete Your Registration for the European Computing Conference 2025</h3>
+  <p>Please fill out the form below to register for ECC 2025. After submitting the form, you will be redirected to our secure payment portal to complete the payment process.</p>
+  
   <form id="registration-form">
     <input type="text" name="name" placeholder="Full Name (First Last)" required>
     <input type="email" name="email" placeholder="Email" required>
@@ -21,6 +85,16 @@
     <input type="number" name="amount" placeholder="Amount (CZK or EUR)" required min="0" step="0.01">
     <button type="submit">Register and Pay</button>
   </form>
+
+  <div class="payment-info">
+    <p>Once you submit the form, you will be redirected to our secure payment portal at <a href="https://karty.vsb.cz/">karty.vsb.cz</a>. There, you can choose fast payment by credit card for a seamless transaction. Ensure your payment is completed by <strong>June 15, 2025</strong> to secure your registration.</p>
+  </div>
+
+  <footer>
+    <p>Join us at ECC 2025 for an enriching experience in cutting-edge computing research and innovation!</p>
+    <img src="ecc2025.png" alt="ECC 2025 Conference Logo">
+  </footer>
+
   <script>
     document.getElementById('registration-form').addEventListener('submit', async (e) => {
       e.preventDefault();
