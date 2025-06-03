@@ -6,79 +6,157 @@
     <title>ECC 2025 Welcome</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
+            font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
         }
         .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
             background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         h1 {
-            color: #2c3e50;
-            font-size: 36px;
+            color: #1a3c6d;
+            font-size: 40px;
             margin-bottom: 20px;
+            text-align: center;
+        }
+        h3 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin: 30px 0 15px;
+            text-align: left;
         }
         p {
-            color: #34495e;
             font-size: 18px;
-            line-height: 1.6;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+        .highlight {
+            background-color: #e9f4ff;
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            border-radius: 8px;
             margin-bottom: 20px;
         }
         img {
             max-width: 100%;
             height: auto;
+            border-radius: 10px;
             margin: 20px 0;
-            border-radius: 5px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
         .thank-you {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
             color: #27ae60;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin: 10px 0;
+        }
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+        ol {
+            padding-left: 30px;
+        }
+        ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #1a3c6d;
+            color: #fff;
+            margin-top: 40px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 32px;
+            }
+            p {
+                font-size: 16px;
+            }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-        
 <body>
-    <main>
-      <h3>Step: Registration</h3>
-        <p>The registration process consists of two steps: completing the form and making the payment-direct to https://karty.vsb.cz/.</p>
-        <ol>
-            <li>
-                <strong>Payment:</strong> 
-                <a href="Registration.html">Register and Pay</a>
-                <p>For overseas authors and participants, please complete the registration and payment as outlined below. At least one author of each accepted paper must register and pay the fee by <strong>June 15, 2025</strong>. The registration fee is <strong>$550</strong> per person (payment must be made in advance). Discounts may be available for those with funding constraints.</p>
-                <p>The registration fee includes:</p>
-                <ul>
-                    <li>Conference proceedings</li>
-                    <li>Conference program guide</li>
-                    <li>Access to all technical sessions</li>
-                    <li>Lunches and dinners</li>
-                    <li>Coffee breaks</li>
-                    <li>Conference gifts</li>
-                </ul>
-                <p><em>Note:</em> Travel and lodging expenses are not included.</p>
-            </li>
-            <li>
-                <strong>Registration Form:</strong> 
-                <a href="https://forms.office.com/r/ADGWSQR5hp">Complete the Registration Form</a>
-            </li>
-        </ol>
-        <p>Please fill out the registration form above.</p>
-    </main>
     <div class="container">
         <h1>Welcome to ECC 2025</h1>
-        <img src="ecc2025.png" alt="ECC 2025 Welcome Image">
-        <p>ECC 2025, hosted by VSB-Technical University Ostrava and Nanjing University of Information Science & Technology, is the 9th Euro-China Conference on Intelligent Data Analysis and Applications.</p>
-        <p>The aim of this conference is to provide an internationally respected forum for scientific research in the broad area of intelligent data analysis, computational intelligence, signal processing, and all associated applications of AIs.</p>
-        <p>We sincerely invite submissions of papers presenting high-quality original research and development related to the following topics.</p>
-        <p class="thank-you">Thank you very much for your registration!</p>
+        <img src="ecc2025.png" alt="ECC 2025 Conference Logo">
+        <p>The <strong>9th Euro-China Conference on Intelligent Data Analysis and Applications (ECC 2025)</strong>, hosted by VSB-Technical University Ostrava and Nanjing University of Information Science & Technology, is a premier international forum for cutting-edge research in intelligent data analysis, computational intelligence, signal processing, and AI applications.</p>
+        <p>We invite submissions of high-quality original research papers on topics including machine learning, data mining, AI-driven signal processing, and more. Join us to connect with global researchers and innovators!</p>
+
+        <div class="highlight">
+            <h3>Step: Registration</h3>
+            <p>The registration process consists of two steps: completing the form and making the payment. After submitting the form, you will be redirected to our secure payment portal at <a href="https://karty.vsb.cz/">karty.vsb.cz</a> for fast and secure payment by credit card.</p>
+            <ol>
+                <li>
+                    <strong>Payment:</strong> 
+                    <a href="Registration.html" class="cta-button">Register and Pay</a>
+                    <p>For overseas authors and participants, please complete the registration and payment by <strong>June 15, 2025</strong>. The registration fee is <strong>$550</strong> per person (payment must be made in advance). Discounts may be available for those with funding constraints.</p>
+                    <p>The registration fee includes:</p>
+                    <ul>
+                        <li>Conference proceedings</li>
+                        <li>Conference program guide</li>
+                        <li>Access to all technical sessions</li>
+                        <li>Lunches and dinners</li>
+                        <li>Coffee breaks</li>
+                        <li>Conference gifts</li>
+                    </ul>
+                    <p><em>Note:</em> Travel and lodging expenses are not included.</p>
+                </li>
+                <li>
+                    <strong>Registration Form:</strong> 
+                    <a href="https://forms.office.com/r/ADGWSQR5hp" class="cta-button">Complete the Registration Form</a>
+                </li>
+            </ol>
+        </div>
+
+        <p class="thank-you">Thank you for registering for ECC 2025! We look forward to seeing you in Ostrava!</p>
     </div>
+
+    <footer>
+        <p>&copy; 2025 ECC | Hosted by VSB-Technical University Ostrava & Nanjing University of Information Science & Technology</p>
+    </footer>
 </body>
 </html>
