@@ -29,7 +29,7 @@
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
-    input, button {
+    input, select, button {
       padding: 12px;
       font-size: 16px;
       border: 1px solid #ccc;
@@ -75,19 +75,29 @@
 <body>
   <h1>ECC 2025 Registration</h1>
   <h3>Complete Your Registration for the European Computing Conference 2025</h3>
-  <p>Please fill out the form below to register for ECC 2025. After submitting the form, you will be redirected to our secure payment portal to complete the payment process.</p>
+  <p>Please fill out the form below to register for ECC 2025. Select your preferred currency (CZK or EUR) and enter the amount. After submitting, you will be redirected to our secure payment portal.</p>
   
   <form id="registration-form">
     <input type="text" name="name" placeholder="Full Name (First Last)" required>
     <input type="email" name="email" placeholder="Email" required>
     <input type="text" name="paper_title" placeholder="Paper Title" required>
     <input type="text" name="paper_id" placeholder="Paper ID" required>
-    <input type="number" name="amount" placeholder="Amount (CZK or EUR)" required min="0" step="0.01">
+    <input type="number" name="amount" placeholder="Amount" required min="0" step="0.01">
+    <select name="currency" required>
+      <option value="" disabled selected>Select Currency</option>
+      <option value="CZK">CZK</option>
+      <option value="EUR">EUR</option>
+    </select>
     <button type="submit">Register and Pay</button>
   </form>
 
   <div class="payment-info">
-    <p>Once you submit the form, you will be redirected to our secure payment portal at <a href="https://karty.vsb.cz/">karty.vsb.cz</a>. There, you can choose fast payment by credit card for a seamless transaction. Ensure your payment is completed by <strong>June 15, 2025</strong> to secure your registration.</p>
+    <p>Once you submit the form, you will be redirected to our secure payment portal at <a href="https://karty.vsb.cz/">karty.vsb.cz</a>. You can also proceed directly to the payment portal with your preferred currency:</p>
+    <p>
+      <a href="javascript:void(0)" onclick="directPay('CZK')">Pay in CZK</a> |
+      <a href="javascript:void(0)" onclick="directPay('EUR')">Pay in EUR</a>
+    </p>
+    <p>Ensure your payment is completed by <strong>June 15, 2025</strong> to secure your registration.</p>
   </div>
 
   <footer>
@@ -108,7 +118,7 @@
         });
         const result = await response.json();
         if (result.paymentUrl) {
-          window.location.href = result.paymentUrl; // Redirect to EPS
+          window.location.href = result.paymentUrl; // Redirect to EPS with currency
         } else {
           alert('Error: Could not generate payment link - ' + (result.error || 'Unknown error'));
         }
@@ -116,6 +126,33 @@
         alert('Error: ' + error.message);
       }
     });
+
+    // Function for direct payment links
+    async function directPay(currency) {
+      const data = {
+        name: 'Direct Payment',
+        email: 'direct@ecc2025.org',
+        paper_title: 'N/A',
+        paper_id: 'N/A',
+        amount: '0', // Replace with actual amount or prompt user
+        currency: currency
+      };
+      try {
+        const response = await fetch('https://mysterious-oasis-96787-8b2c0caabf91.herokuapp.com/register', {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: { 'Content-Type': 'application/json' }
+        });
+        const result = await response.json();
+        if (result.paymentUrl) {
+          window.location.href = result.paymentUrl;
+        } else {
+          alert('Error: Could not generate payment link - ' + (result.error || 'Unknown error'));
+        }
+      } catch (error) {
+        alert('Error: ' + error.message);
+      }
+    }
   </script>
 </body>
 </html>
