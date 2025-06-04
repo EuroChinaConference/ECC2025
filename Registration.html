@@ -75,7 +75,7 @@
 <body>
   <h1>ECC 2025 Registration</h1>
   <h3>Complete Your Registration for the EuroChina Conference 2025</h3>
-  <p>Please fill out the form below to register for ECC 2025. Select your preferred currency (CZK or EUR) and enter the amount. After submitting, you will be redirected to our secure payment portal.</p>
+  <p>Please fill out the form below to register for ECC 2025. The currency is in EUR. After submitting, you will be redirected to our secure payment portal.</p>
   
   <form id="registration-form">
     <input type="text" name="name" placeholder="Full Name (First Last)" required>
@@ -83,19 +83,14 @@
     <input type="text" name="paper_title" placeholder="Paper Title" required>
     <input type="text" name="paper_id" placeholder="Paper ID" required>
     <input type="number" name="amount" placeholder="Amount" required min="0" step="0.01">
-    <select name="currency" required>
-      <option value="" disabled selected>Select Currency</option>
-      <option value="CZK">CZK</option>
-      <option value="EUR">EUR</option>
-    </select>
+    <input type="hidden" name="currency" value="EUR">
     <button type="submit">Register and Pay</button>
   </form>
 
   <div class="payment-info">
-    <p>Once you submit the form, you will be redirected to our secure payment portal at <a href="https://karty.vsb.cz/">karty.vsb.cz</a>. You can also proceed directly to the payment portal with your preferred currency:</p>
+    <p>Once you submit the form, you will be redirected to our secure payment portal at <a href="https://karty.vsb.cz/">karty.vsb.cz</a>. You can also proceed directly to the payment portal:</p>
     <p>
-      <a href="javascript:void(0)" onclick="directPay('CZK')">Pay in CZK</a> |
-      <a href="javascript:void(0)" onclick="directPay('EUR')">Pay in EUR</a>
+      <a href="javascript:void(0)" onclick="directPay()">Pay in EUR</a>
     </p>
     <p>Ensure your payment is completed by <strong>June 15, 2025</strong> to secure your registration.</p>
   </div>
@@ -107,61 +102,61 @@
 
 <script>
   document.getElementById('registration-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const formData = new FormData(e.target);
-  const data = Object.fromEntries(formData);
-  try {
-    const response = await fetch('https://mysterious-oasis-96787-8b2c0caabf91.herokuapp.com/register', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json' }
-    });
-    const result = await response.json();
-    if (result.paymentUrl) {
-      window.location.href = result.paymentUrl;
-    } else {
-      alert('Error: Could not generate payment link - ' + (result.error || 'Unknown error'));
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    try {
+      const response = await fetch('https://mysterious-oasis-96787-8b2c0caabf91.herokuapp.com/register', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const result = await response.json();
+      if (result.paymentUrl) {
+        window.location.href = result.paymentUrl;
+      } else {
+        alert('Error: Could not generate payment link - ' + (result.error || 'Unknown error'));
+      }
+    } catch (error) {
+      alert('Error: ' + error.message);
     }
-  } catch (error) {
-    alert('Error: ' + error.message);
-  }
-});
+  });
 
-async function directPay() {
-  const amount = prompt('Enter amount in EUR');
-  if (!amount || isNaN(amount) || amount <= 0) {
-    alert('Please enter a valid amount');
-    return;
-  }
-  const paper_id = prompt('Enter your Paper ID');
-  if (!paper_id) {
-    alert('Please enter a valid Paper ID');
-    return;
-  }
-  const data = {
-    name: 'Direct Payment',
-    email: 'direct@ecc2025.org',
-    paper_title: 'N/A',
-    paper_id: paper_id,
-    amount: amount,
-    currency: 'EUR'
-  };
-  try {
-    const response = await fetch('https://mysterious-oasis-96787-8b2c0caabf91.herokuapp.com/register', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json' }
-    });
-    const result = await response.json();
-    if (result.paymentUrl) {
-      window.location.href = result.paymentUrl;
-    } else {
-      alert('Error: Could not generate payment link - ' + (result.error || 'Unknown error'));
+  async function directPay() {
+    const amount = prompt('Enter amount in EUR');
+    if (!amount || isNaN(amount) || amount <= 0) {
+      alert('Please enter a valid amount');
+      return;
     }
-  } catch (error) {
-    alert('Error: ' + error.message);
+    const paper_id = prompt('Enter your Paper ID');
+    if (!paper_id) {
+      alert('Please enter a valid Paper ID');
+      return;
+    }
+    const data = {
+      name: 'Direct Payment',
+      email: 'direct@ecc2025.org',
+      paper_title: 'N/A',
+      paper_id: paper_id,
+      amount: amount,
+      currency: 'EUR'
+    };
+    try {
+      const response = await fetch('https://mysterious-oasis-96787-8b2c0caabf91.herokuapp.com/register', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const result = await response.json();
+      if (result.paymentUrl) {
+        window.location.href = result.paymentUrl;
+      } else {
+        alert('Error: Could not generate payment link - ' + (result.error || 'Unknown error'));
+      }
+    } catch (error) {
+      alert('Error: ' + error.message);
+    }
   }
-}
 </script>
 </body>
 </html>
