@@ -74,7 +74,7 @@
 </head>
 <body>
   <h1>ECC 2025 Registration</h1>
-  <h3>Complete Your Registration for the European Computing Conference 2025</h3>
+  <h3>Complete Your Registration for the EuroChina Conference 2025</h3>
   <p>Please fill out the form below to register for ECC 2025. Select your preferred currency (CZK or EUR) and enter the amount. After submitting, you will be redirected to our secure payment portal.</p>
   
   <form id="registration-form">
@@ -118,7 +118,7 @@
         });
         const result = await response.json();
         if (result.paymentUrl) {
-          window.location.href = result.paymentUrl; // Redirect to EPS with currency
+          window.location.href = result.paymentUrl;
         } else {
           alert('Error: Could not generate payment link - ' + (result.error || 'Unknown error'));
         }
@@ -126,20 +126,24 @@
         alert('Error: ' + error.message);
       }
     });
-
-    // Function for direct payment links
+  
     async function directPay(currency) {
       const amount = prompt(`Enter amount in ${currency}`);
       if (!amount || isNaN(amount) || amount <= 0) {
         alert('Please enter a valid amount');
         return;
       }
+      const paper_id = prompt('Enter your Paper ID');
+      if (!paper_id) {
+        alert('Please enter a valid Paper ID');
+        return;
+      }
       const data = {
         name: 'Direct Payment',
         email: 'direct@ecc2025.org',
         paper_title: 'N/A',
-        paper_id: 'N/A',
-        amount: '0', // Replace with actual amount or prompt user
+        paper_id: paper_id,
+        amount: amount,
         currency: currency
       };
       try {
