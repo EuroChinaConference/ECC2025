@@ -105,63 +105,63 @@
     <img src="ecc2025.png" alt="ECC 2025 Conference Logo">
   </footer>
 
-  <script>
-    document.getElementById('registration-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const data = Object.fromEntries(formData);
-      try {
-        const response = await fetch('https://mysterious-oasis-96787-8b2c0caabf91.herokuapp.com/register', {
-          method: 'POST',
-          body: JSON.stringify(data),
-          headers: { 'Content-Type': 'application/json' }
-        });
-        const result = await response.json();
-        if (result.paymentUrl) {
-          window.location.href = result.paymentUrl;
-        } else {
-          alert('Error: Could not generate payment link - ' + (result.error || 'Unknown error'));
-        }
-      } catch (error) {
-        alert('Error: ' + error.message);
+<script>
+  document.getElementById('registration-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    try {
+      const response = await fetch('https://mysterious-oasis-96787-8b2c0caabf91.herokuapp.com/register', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const result = await response.json();
+      if (result.paymentUrl) {
+        window.location.href = result.paymentUrl;
+      } else {
+        alert('Error: Could not generate payment link - ' + (result.error || 'Unknown error'));
       }
-    });
-  
-    async function directPay(currency) {
-      const amount = prompt(`Enter amount in ${currency}`);
-      if (!amount || isNaN(amount) || amount <= 0) {
-        alert('Please enter a valid amount');
-        return;
-      }
-      const paper_id = prompt('Enter your Paper ID');
-      if (!paper_id) {
-        alert('Please enter a valid Paper ID');
-        return;
-      }
-      const data = {
-        name: 'Direct Payment',
-        email: 'direct@ecc2025.org',
-        paper_title: 'N/A',
-        paper_id: paper_id,
-        amount: amount,
-        currency: currency
-      };
-      try {
-        const response = await fetch('https://mysterious-oasis-96787-8b2c0caabf91.herokuapp.com/register', {
-          method: 'POST',
-          body: JSON.stringify(data),
-          headers: { 'Content-Type': 'application/json' }
-        });
-        const result = await response.json();
-        if (result.paymentUrl) {
-          window.location.href = result.paymentUrl;
-        } else {
-          alert('Error: Could not generate payment link - ' + (result.error || 'Unknown error'));
-        }
-      } catch (error) {
-        alert('Error: ' + error.message);
-      }
+    } catch (error) {
+      alert('Error: ' + error.message);
     }
-  </script>
+  });
+
+  async function directPay(currency) {
+    const amount = prompt(`Enter amount in ${currency}`);
+    if (!amount || isNaN(amount) || amount <= 0) {
+      alert('Please enter a valid amount');
+      return;
+    }
+    const paper_id = prompt('Enter your Paper ID');
+    if (!paper_id) {
+      alert('Please enter a valid Paper ID');
+      return;
+    }
+    const data = {
+      name: 'Direct Payment',
+      email: 'direct@ecc2025.org',
+      paper_title: 'N/A',
+      paper_id: paper_id,
+      amount: amount,
+      currency: currency
+    };
+    try {
+      const response = await fetch('https://mysterious-oasis-96787-8b2c0caabf91.herokuapp.com/register', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const result = await response.json();
+      if (result.paymentUrl) {
+        window.location.href = result.paymentUrl;
+      } else {
+        alert('Error: Could not generate payment link - ' + (result.error || 'Unknown error'));
+      }
+    } catch (error) {
+      alert('Error: ' + error.message);
+    }
+  }
+</script>
 </body>
 </html>
