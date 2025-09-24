@@ -8,7 +8,7 @@ We are currently collecting copyright agreements for the ECC2025 proceedings. To
 
 ## 📄 Step 1: Download the Contributor Agreement Form
 Please download the form from the following link:  
-**[EuroChinaConference](https://github.com/EuroChinaConference/ECC2025/blob/main/copyright/copyrightForm.docx)**
+**[EuroChinaConference](https://github.com/EuroChinaConference/ECC2025/blob/main/copyright/copyrightForm.docx?raw=true)**
 
 ## 🖊️ Step 2: Complete the Form
 Each corresponding author should:
